@@ -13,6 +13,6 @@ pipeline {
 
   }
   environment {
-    registry = 'docker push incinere/flask:main'
+    registry = 'docker pull incinere/flask'
   }
 }
