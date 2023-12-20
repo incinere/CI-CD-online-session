@@ -12,7 +12,4 @@ pipeline {
     }
 
   }
-  environment {
-    registry = 'docker push incinere/flask:peepeepoopoo'
-  }
 }
