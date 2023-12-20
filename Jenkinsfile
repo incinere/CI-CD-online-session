@@ -12,4 +12,7 @@ pipeline {
     }
 
   }
+  environment {
+    registry = 'incinere/flask'
+  }
 }
