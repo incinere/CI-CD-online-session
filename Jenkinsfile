@@ -13,6 +13,6 @@ pipeline {
 
   }
   environment {
-    registry = 'docker push incinere/flask-app:tagname'
+    registry = 'docker pull incinere/flask-app'
   }
 }
