@@ -5,6 +5,16 @@ pipeline {
       steps {
         script {
           checkout scm
+
+
+
+
+
+
+
+
+
+
           def customImage = docker.build("${registry}:${env.Build_ID}")
         }
 
@@ -13,6 +23,6 @@ pipeline {
 
   }
   environment {
-    registry = 'docker push incinere/flask-app'
+    registry = 'docker push incinere/flask-app:tagname'
   }
 }
