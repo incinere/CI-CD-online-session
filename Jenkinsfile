@@ -1,7 +1,7 @@
 pipeline {
   agent any
   stages {
-    stage('build') {
+    stage('Build') {
       steps {
         script {
           checkout scm
@@ -10,16 +10,17 @@ pipeline {
 
       }
     }
-stage('unit-test') {
-  steps {
-    script {
-      docker.image("${registry}:${env.BUILD_ID}").inside{
-        c-> sh 'python app_test.py'}
-    }
 
-  }
-}
-      
+   stage('unit-test') {
+      steps {
+        script {
+          docker.image("${registry}:${env.BUILD_ID}").inside{
+            c-> sh 'python app_test.py'}
+          }
+
+        }
+      }
+
     stage('Publish') {
       steps {
         script {
@@ -34,6 +35,6 @@ stage('unit-test') {
 
   }
   environment {
-    registry = 'incinere/flask'
+    registry = 'vpanton/flask-app'
   }
 }
