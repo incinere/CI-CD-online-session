@@ -26,20 +26,20 @@ jobs:
     - name: Analysing the code with pylint
       run: |
         pylint --fail-under=8 $(git ls-files '*.py')
-        
-  build:
-  needs: pylint
-    runs-on: ubuntu-latest
 
+  build:
+    needs: pylint
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag incinere/flask:latest
-    name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@7b7aa264d83dc58691451798b4d117d53d21edfe
-        with:
-          image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
-          format: 'template'
-          template: '@/contrib/sarif.tpl'
-          output: 'trivy-results.sarif'
-          severity: 'CRITICAL,HIGH'
+      run: docker build . --file Dockerfile --tag vpanton/flask-app:latest
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@master
+      with:
+        image-ref: 'vpanton/flask-app:latest'
+        format: 'table'
+        exit-code: '1'
+        ignore-unfixed: true
+        vuln-type: 'os,library'
+        severity: 'CRITICAL,HIGH'
