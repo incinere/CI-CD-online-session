@@ -35,6 +35,6 @@ pipeline {
 
   }
   environment {
-    registry = 'vpanton/flask-app'
+    registry = 'incinere/flask'
   }
 }
